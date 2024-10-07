@@ -6,12 +6,7 @@ const db = require('./config/db'); // Importa tu conexión a la base de datos
 
 const app = express();
 
-app.use(cors({
-    origin: 'https://ayudantias-1.onrender.com', // Reemplaza con el dominio correcto de tu frontend
-    methods: 'GET, POST',
-    credentials: true,
-}));
-
+app.use(cors());
 app.use(express.json()); // Para manejar JSON en las solicitudes
 app.use(bodyParser.urlencoded({ extended: true })); // Para manejar formularios URL-encoded
 
