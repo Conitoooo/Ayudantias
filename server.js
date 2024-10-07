@@ -5,7 +5,13 @@ const authRoutes = require('./routes/authRoutes'); // Asegúrate de que la ruta 
 const db = require('./config/db'); // Importa tu conexión a la base de datos
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+    origin: 'https://tu-dominio-frontend.com', // Cambia esto a tu dominio frontend correcto
+    methods: 'GET, POST',
+    credentials: true,
+}));
+
 app.use(express.json()); // Para manejar JSON en las solicitudes
 app.use(bodyParser.urlencoded({ extended: true })); // Para manejar formularios URL-encoded
 
