@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db'); // Importa tu conexión a la base de datos
+const db = require('./config/db'); // Importa tu conexión a la base de datos
 
 const app = express();
 app.use(cors());

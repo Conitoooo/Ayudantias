@@ -1,16 +1,19 @@
-const mysql = require('mysql2');
+const { Pool } = require('pg');
 
-const connection = mysql.createConnection({
-    // Usa la variable de entorno para la conexión
-    uri: process.env.MYSQL_URL, // Asegúrate de que esta variable esté configurada en Railway
+const pool = new Pool({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
 });
 
-connection.connect((err) => {
+pool.connect((err) => {
     if (err) {
-        console.error('Error conectando a la base de datos: ' + err.stack);
-        return;
+        console.error('Error conectando a la base de datos: ', err);
+    } else {
+        console.log('Conectado a la base de datos PostgreSQL.');
     }
-    console.log('Conectado a la base de datos como ID ' + connection.threadId);
 });
 
-module.exports = connection;
+module.exports = pool;
