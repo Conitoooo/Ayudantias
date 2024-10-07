@@ -7,7 +7,7 @@ const db = require('./config/db'); // Importa tu conexión a la base de datos
 const app = express();
 
 app.use(cors({
-    origin: 'https://tu-dominio-frontend.com', // Cambia esto a tu dominio frontend correcto
+    origin: 'https://ayudantias-1.onrender.com', // Reemplaza con el dominio correcto de tu frontend
     methods: 'GET, POST',
     credentials: true,
 }));
