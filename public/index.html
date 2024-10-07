@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - Universidad San Sebastián</title>
+    <link rel="stylesheet" href="Estilo.css">  <!-- Aquí enlazas el CSS -->
+</head>
+<body>
+    <!-- Barra superior con el logo -->
+    <header>
+        <div class="nav-bar">
+            <img src="ESCUDO-USS_Horizontal_color.png" alt="Universidad San Sebastián" class="logo">
+            <span class="university-name">Universidad San Sebastián</span>
+        </div>
+    </header>
+
+    <!-- Contenido del login -->
+    <div class="container">
+        <div class="login-box">
+            <form id="loginForm">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" placeholder="Ejemplo@correo.uss.cl" required>
+                
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="**********" required>
+                
+                <button type="submit" class="login-button">Iniciar Sesión</button>
+            
+                <a href="#" class="forgot-password">¿Olvidó la contraseña?</a>
+            </form>
+            
+            <script>
+                document.querySelector('form').addEventListener('submit', async (e) => {
+                    e.preventDefault(); // Evitar el envío del formulario de forma tradicional
+                
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                
+                    try {
+                        const response = await fetch('https://ayudantias.onrender.com/api/login', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email, password })
+                        });
+                
+                        const data = await response.json();
+                        if (response.ok) {
+                            alert(data.message); // Inicio de sesión exitoso
+                        } else {
+                            alert(data.message); // Mostrar error
+                        }
+                    } catch (err) {
+                        console.error('Error en la solicitud:', err);
+                    }
+                });
+                </script>
+                
+            
+        </div>
+    </div>
+</body>
+</html>
